@@ -14,7 +14,18 @@
     import { eventBus } from '../main'
 
     export default {
-        props: ['name', 'channelHeight'],
+        props: {
+            name: {
+                type: String
+            }, 
+            channelHeight: {
+                type: Number
+            },
+            containerOffset: {
+                type: Number,
+                default: 0
+            }
+        },
         data: function () {
             return {
                 height: 200,
@@ -27,6 +38,7 @@
                 return `
                     height: ${this.height}px;
                     width: ${this.width}px;
+                    margin-top: ${this.containerOffset}px;
                 `
             },
             liquidStyle() {
@@ -37,7 +49,7 @@
             liquidHeight() {
                 if (this.liquidHeight > this.height) {
                     eventBus.$emit('liquidOverflow', {container: this.name})
-                } else if (this.liquidHeight > this.channelHeight) {
+                } else if (this.liquidHeight > this.channelHeight + this.containerOffset) {
                     eventBus.$emit('liquidReachedChannelLevel', {container: this.name})
                 }
             }

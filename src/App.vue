@@ -1,12 +1,26 @@
 <template>
-  <div class="row">
-    <container name="A" :channelHeight="channelHeight"></container>
-    <channel 
-    :channelHeight="channelHeight"
-    inContainer="A"
-    outContainer="B"
-    ></channel>
-    <container name="B" :channelHeight="channelHeight"></container>
+  <div>
+    <div class="row">
+      <container 
+        name="A" 
+        :channelHeight="channelHeight"
+      ></container>
+      <channel 
+        :channelHeight="channelHeight"
+        inContainer="A"
+        outContainer="B"
+      ></channel>
+      <container 
+        name="B" 
+        :channelHeight="channelHeight"
+        :containerOffset="containerOffset"
+      ></container>
+    </div>
+    <div class="row">
+      <input type="text" placeholder="Channel level" v-model.number="channelHeight" />
+      <input type="text" placeholder="Container offset" v-model.number="containerOffset" />
+      <button @click="addLiquid">Start</button>
+    </div>
   </div>
 </template>
 
@@ -19,7 +33,8 @@
     data: function () {
       return {
         keepAddingLiquid: true,
-        channelHeight: 20
+        channelHeight: 20,
+        containerOffset: 50
       }
     },
     methods: {
@@ -43,7 +58,6 @@
     },
     created() {
       eventBus.$on('liquidOverflow', () => this.keepAddingLiquid = false)
-      this.addLiquid()
     }
   }
 </script>

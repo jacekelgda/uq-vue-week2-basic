@@ -73,10 +73,10 @@
     .channel {
         background: rgb(93, 182, 134);
         height: 5px;
-        width: 49.5px;
+        width: 50px;
         border-bottom: 15px solid rgb(56, 70, 93);
         border-top: 15px solid rgb(56, 70, 93);
-        margin-left: 134.5px;
+        margin-left: 135px;
         z-index: 1;
         position: absolute;
         top: 180px;
